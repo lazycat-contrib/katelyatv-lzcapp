@@ -1,0 +1,33 @@
+name: KatelyaTV
+package: lazycat.coummunity.app.katelyatv
+version: 0.4.0
+min_os_version: 1.3.8
+description: 一个基于MoonTV(LunaTV)二次开发的项目
+homepage: https://github.com/katelya77/KatelyaTV
+author: katelya77
+application:
+    subdomain: katelyatv
+
+    public_path:
+        - /
+    upstreams:
+        - location: /
+          backend: http://katelyatv:3000
+
+services:
+    katelyatv:
+        # ghcr.io/katelya77/katelyatv:latest
+        image: xget.xi-xu.me/cr/ghcr/katelya77/katelyatv:latest
+        environment:
+            - USERNAME={{ .U.admin_username }}
+            - PASSWORD={{.U.admin_password}}
+            - NEXT_PUBLIC_ENABLE_REGISTER={{.U.enable_register}}
+            - NEXT_PUBLIC_STORAGE_TYPE=redis
+            - REDIS_URL=redis://katelyatv-redis:6379
+        depends_on:
+            - katelyatv-redis
+
+    katelyatv-redis:
+        image: registry.lazycat.cloud/edward/library/redis:4c6b9d7b7a334a2e
+        binds:
+            - /lzcapp/var/redis:/data
