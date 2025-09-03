@@ -15,6 +15,14 @@ application:
         - location: /
           backend: http://katelyatv:3000
 
+locales:
+    zh:
+        usage: "注意：本软件需要自备视频播放源方能正常使用"
+    en:
+        usage: "Note: This software requires its own video playback source to work properly"
+    ja:
+        usage: "注意：このソフトウェアは独自のビデオ再生ソースを備えて使用する必要があります"
+
 services:
     katelyatv:
         #  ghcr.io/katelya77/katelyatv:latest
