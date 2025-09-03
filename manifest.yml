@@ -1,17 +1,11 @@
 name: KatelyaTV
 package: lazycat.coummunity.app.katelyatv
-version: 0.5.0
+version: 0.5.1
 min_os_version: 1.3.8
 description: 一个基于MoonTV(LunaTV)二次开发的项目
 usage: "注意：本软件需要自备视频播放源方能正常使用"
 homepage: https://github.com/katelya77/KatelyaTV
 author: katelya77
-
-locales:
-    en:
-        usage: "Note: This software requires its own video playback source to work properly"
-    ja:
-        usage: "注意：このソフトウェアは独自のビデオ再生ソースを備えて使用する必要があります"
 
 application:
     subdomain: katelyatv
