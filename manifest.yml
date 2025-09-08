@@ -34,3 +34,14 @@ services:
         image: registry.lazycat.cloud/edward/library/redis:4c6b9d7b7a334a2e
         binds:
             - /lzcapp/var/redis:/data
+
+locales:
+    zh:
+        name: "KatelyaTV"
+        description: "一个基于MoonTV(LunaTV)二次开发的项目"
+    zh_CN:
+        name: "KatelyaTV"
+        description: "一个基于MoonTV(LunaTV)二次开发的项目"
+    en:
+        name: "KatelyaTV"
+        description: "a project based on MoonTV(LunaTV)"
