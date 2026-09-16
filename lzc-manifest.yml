@@ -1,0 +1,27 @@
+usage: "注意：本软件需要自备视频播放源方能正常使用"
+application:
+  subdomain: katelyatv
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: http://katelyatv:3000/
+
+services:
+  katelyatv:
+    # upstream: ghcr.io/katelya77/katelyatv:latest
+    image: ghcr.io/katelya77/katelyatv:latest
+    environment:
+      - USERNAME={{ .U.admin_username }}
+      - PASSWORD={{.U.admin_password}}
+      - NEXT_PUBLIC_ENABLE_REGISTER={{.U.enable_register}}
+      - NEXT_PUBLIC_STORAGE_TYPE=redis
+      - REDIS_URL=redis://katelyatv-redis:6379
+    depends_on:
+      - katelyatv-redis
+
+  katelyatv-redis:
+    # upstream: library/redis:7-alpine
+    image: redis:7-alpine
+    binds:
+      - /lzcapp/var/redis:/data

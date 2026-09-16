@@ -1,0 +1,14 @@
+package: lazycat.coummunity.app.katelyatv
+version: 0.7.0
+name: KatelyaTV
+description: "一个基于MoonTV(LunaTV)二次开发的项目"
+min_os_version: "1.5.0"
+homepage: https://github.com/katelya77/KatelyaTV
+author: katelya77
+locales:
+  zh:
+    name: "KatelyaTV"
+    description: "一个基于MoonTV(LunaTV)二次开发的项目"
+  en:
+    name: "KatelyaTV"
+    description: "a project based on MoonTV(LunaTV)"

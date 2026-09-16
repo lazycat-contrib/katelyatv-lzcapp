@@ -1,0 +1,54 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: .lazycat-build/katelyatv.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: image
+    image: katelyatv
+    bump: patch
+
+build:
+  run_buildscript: false
+
+images:
+  # 主应用：上游仅 latest/mutable + attestation-only 的 sha256- 家族（坑 14，不可用）→ latest + bump: patch
+  - id: katelyatv
+    target: service
+    service: katelyatv
+    source: ghcr.io/katelya77/katelyatv
+    channel: custom
+    sort: created
+    tag_regex: '^latest$'
+    delivery:
+      mode: lazycat
+  # 辅助 redis：跟随 7.x-alpine 补丁家族
+  - id: katelyatv-redis
+    target: service
+    service: katelyatv-redis
+    source: library/redis
+    channel: custom
+    sort: semver
+    tag_regex: '^7\.\d+-alpine$'
+    version_regex: '^(?P<version>7\.\d+)-alpine$'
+    version_template: '{version}.0'
+    delivery:
+      mode: lazycat
+
+stores:
+  official:
+    enabled: true
+    skip_if_version_exists: true
+    changelog_locales: [zh, en]
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: KatelyaTV
+    summary: "基于 MoonTV(LunaTV) 二次开发的影视平台"
