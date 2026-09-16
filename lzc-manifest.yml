@@ -6,11 +6,10 @@ application:
   upstreams:
     - location: /
       backend: http://katelyatv:3000/
-
 services:
   katelyatv:
-    # upstream: ghcr.io/katelya77/katelyatv:latest
-    image: ghcr.io/katelya77/katelyatv:latest
+    # upstream: ghcr.io/katelya77/katelyatv:latest@sha256:ad04f71a436a580b1ab5a8e69a6c568c58f7990413b52d0ddc79ea5d814a7208
+    image: registry.lazycat.cloud/czyt/katelya77/katelyatv:bc0fb7a8e789ecfc
     environment:
       - USERNAME={{ .U.admin_username }}
       - PASSWORD={{.U.admin_password}}
@@ -19,9 +18,8 @@ services:
       - REDIS_URL=redis://katelyatv-redis:6379
     depends_on:
       - katelyatv-redis
-
   katelyatv-redis:
-    # upstream: library/redis:7-alpine
-    image: redis:7-alpine
+    # upstream: library/redis:7.4-alpine
+    image: registry.lazycat.cloud/czyt/library/redis:feb21bfd39585516
     binds:
       - /lzcapp/var/redis:/data
