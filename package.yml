@@ -1,4 +1,5 @@
 package: lazycat.coummunity.app.katelyatv
+license: MIT
 version: 0.7.0
 name: KatelyaTV
 description: "一个基于MoonTV(LunaTV)二次开发的项目"
